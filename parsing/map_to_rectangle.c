@@ -54,6 +54,12 @@ char **map_to_rectangle(char **map)
 
     rm_newline(map);
     max_width = get_biggest_line(map);
+    if (max_width <= 1)
+    {
+        write (2, "map should have more than one column\n", 38);
+        free_map(map);
+        return NULL;
+    }
     height = get_height(map);
 
     char    **new_map;
@@ -78,7 +84,7 @@ char **map_to_rectangle(char **map)
         j = ft_strlen(map[i]);
         while(j < max_width)
         {
-            new_map[i][j] = '4';
+            new_map[i][j] = FILL;
             j++;
         }
         new_map[i][max_width] = '\n';
@@ -88,43 +94,4 @@ char **map_to_rectangle(char **map)
     new_map[height] = NULL;
     free_map(map);
     return (new_map);
-}
-
-
-int main(int argc, char **argv)
-{
-    if (argc != 2)
-    {
-        ft_printf("please enter a map name\n");
-        return (1);
-    }
-    char **map;
-    map = NULL;
-    map = get_map(argv[1]);
-    int i = 0;
-    while (map && map[i])
-    {
-        ft_printf("%s", map[i]);
-        i++;
-    }
-    ft_printf("\n-----------\n");
-    if (!map)
-    {
-        ft_printf("invalid map\n");
-        return (1);
-    }
-    char **map_rect = map_to_rectangle(map);
-    if (!map_rect)
-        return (1);
-    i = 0;
-    while (map_rect && map_rect[i])
-    {
-        ft_printf("%s", map_rect[i]);
-        i++;
-    }
-    if (!has_valid_char(map_rect))
-        return (1);
-    free_map(map_rect);
-
-    return (0);
 }

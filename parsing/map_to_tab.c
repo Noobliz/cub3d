@@ -30,7 +30,7 @@ static char **add_line(char **map, char *line, int *count)
     }
     // copy the new line
     new_map[*count] = line;
-    new_map[*count + 1] = '\0';
+    new_map[*count + 1] = NULL;
     //free what was in the old map
     if (map)
         free(map);

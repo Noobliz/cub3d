@@ -1,5 +1,5 @@
 
-#include "../parsing.h"
+#include "parsing.h"
 
 
 //skip the texture part and goes to map part
@@ -21,7 +21,10 @@ static char **add_line(char **map, char *line, int *count)
     i = 0;
     char **new_map = malloc(sizeof(char *) * (*count + 2));
     if (!new_map)
+    {
+        perror("malloc");
         return (NULL);
+    }
     // copy what was already in map
     while (i < *count)
     {

@@ -1,4 +1,4 @@
-#include "../parsing.h"
+#include "parsing.h"
 
 int get_height(char **map)
 {
@@ -51,6 +51,7 @@ char **map_to_rectangle(char **map)
     int j;
     i = 0;
     j = 0;
+    char    **new_map;
 
     rm_newline(map);
     max_width = get_biggest_line(map);
@@ -62,7 +63,6 @@ char **map_to_rectangle(char **map)
     }
     height = get_height(map);
 
-    char    **new_map;
     new_map = ft_calloc((height + 1), sizeof(char *));
     if (!new_map)
     {
@@ -84,7 +84,7 @@ char **map_to_rectangle(char **map)
         j = ft_strlen(map[i]);
         while(j < max_width)
         {
-            new_map[i][j] = FILL;
+            new_map[i][j] = HOLE;
             j++;
         }
         new_map[i][max_width] = '\n';

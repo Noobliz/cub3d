@@ -9,7 +9,8 @@ LIBFTDIR = libft
 SRC = $(SRCDIR)/map_to_tab.c \
 		$(SRCDIR)/map_to_rectangle.c \
 		$(SRCDIR)/free_stuff.c \
-		$(SRCDIR)/main_test.c \
+		main_test.c \
+		$(SRCDIR)/map_utils.c \
 		$(SRCDIR)/valid_chars.c
 OBJ = $(SRC:%.c=$(OBJDIR)/%.o)
 

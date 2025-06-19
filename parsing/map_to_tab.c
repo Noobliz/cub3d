@@ -5,9 +5,10 @@
 //skip the texture part and goes to map part
 static int is_map_line(char *line)
 {
-    while (*line)
+    while (line && *line)
     {
-        if (*line == '1' || *line == '0' || *line == 'N' || *line == 'S' || *line == 'E' || *line == 'W')
+        if (*line == '1' || *line == '0' || *line == 'N' 
+            || *line == 'S' || *line == 'E' || *line == 'W')
             return (1);
         line++;
     }
@@ -19,6 +20,8 @@ static char **add_line(char **map, char *line, int *count)
 {
     int i;
     i = 0;
+    if (line && (line[0] == '\n' || line[0] == '\0'))
+        return (NULL);
     char **new_map = malloc(sizeof(char *) * (*count + 2));
     if (!new_map)
     {
@@ -89,8 +92,9 @@ char **get_map(char *filename)
             map_found = 1;
         if (map_found)
         {
-            if (line[0] == '\n' || line[0] == '\0')
+            if (line[0] == '\n' || line[0] == '\0' || line[0] == '\t')
             {
+                printf("hello\n");
                 free(line);
                 line = NULL;
                 break;
@@ -105,10 +109,17 @@ char **get_map(char *filename)
         }
         line = get_next_line(fd);
     }
-    if (line)
+    // if (line)
+    // {
+    //     free(line);
+    //     line = NULL;
+    // }
+    //cleaning
+    line = get_next_line(fd);
+    while (line)
     {
         free(line);
-        line = NULL;
+        line = get_next_line(fd);
     }
     close(fd);
     return (map);

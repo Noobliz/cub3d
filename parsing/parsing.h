@@ -38,10 +38,11 @@ void    free_map(char **map);
 void    print_map(char **map);
 int     valid_char(char *line);
 int     is_player(char c);
+int	    ft_strcmp(const char *s1, const char *s2);
 
 
 
-void map_is_valid(char ***map_rect, char *argv);
+void    map_is_valid(char ***map_rect, char *argv);
 
 # endif
 #endif

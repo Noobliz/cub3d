@@ -41,6 +41,26 @@ static char **add_line(char **map, char *line, int *count)
     return (new_map);
 }
 
+
+int valid_name(char *name)
+{
+    int len;
+    len = ft_strlen(name);
+    char *extension;
+    if (len < 5)
+    {
+        write(2, "input must be : <name.cub>\n", 28);
+        return (0);
+    }
+    len = len - 4;
+    extension = name + len;
+    if (ft_strcmp(extension, ".cub") != 0)
+    {
+        write(2, "extension format : <.cub>\n", 27);
+        return (0);
+    }
+    return (1);
+}
 //skip the textures lines and then copy into a **tab starting from the first valid char found (1 / 0 / N / S etc)
 char **get_map(char *filename)
 {
@@ -50,6 +70,8 @@ char **get_map(char *filename)
     char    *line;
     char    **map;
     line = NULL;
+    if (!valid_name(filename))
+        return (NULL);
     fd = open(filename, O_RDONLY);
     if (fd < 0)
     {

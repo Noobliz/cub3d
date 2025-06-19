@@ -22,7 +22,7 @@
 
 //define the value used to make the map rectangle
 # ifndef HOLE
-#  define HOLE '4'
+#  define HOLE 'Q'
 
 //skip the textures lines and then copy into a **tab starting from the first valid char found (1 / 0 / N / S etc)
 char    **get_map(char *filename);

@@ -17,6 +17,7 @@ int main(int argc, char **argv)
     map_is_valid(&map_rect, argv[1]);
     if (!map_rect)
         return (1);
+    ft_printf("from data:\n\n");
     data.map = map_rect;
     print_map(data.map);
     free_map(data.map);

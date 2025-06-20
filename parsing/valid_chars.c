@@ -6,7 +6,7 @@
 /*   By: lguiet <lguiet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 11:23:37 by lguiet            #+#    #+#             */
-/*   Updated: 2025/06/19 12:31:10 by lguiet           ###   ########.fr       */
+/*   Updated: 2025/06/20 10:52:06 by lguiet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,20 @@ int has_valid_char(char **map)
     }
     return (1);
 }
-
+int end_of_line(char c)
+{
+    return ((c == '\0' || c == '\n'));
+}
 int has_holes(char **map, int i, int j)
 {
     if (j == 0 && map[i][j] != '1')
         return (1);
     if (map[i][j] == '0' || is_player(map[i][j]))
     {
-        if ((map[i][j + 1] == HOLE) || (j > 0 && map[i][j - 1] == HOLE))
+        if ((map[i][j + 1] == HOLE) || (j > 0 && map[i][j - 1] == HOLE) || end_of_line(map[i][j + 1]))
             return (1);
-        if ((i > 0 && map[i - 1][j] == HOLE) || (map[i + 1] != NULL && map[i + 1][j] == HOLE))
+        if ((i > 0 && map[i - 1][j] == HOLE) 
+            || (map[i + 1] != NULL && map[i + 1][j] == HOLE) || map[i + 1] == NULL)
             return (1);
     }
     return (0);

@@ -1,41 +1,47 @@
+
 NAME = guardian
 
-
+# Dossiers
 SRCDIR = parsing
 OBJDIR = obj
 LIBFTDIR = libft
 
 
-SRC = $(SRCDIR)/map_to_tab.c \
-		$(SRCDIR)/map_to_rectangle.c \
-		$(SRCDIR)/free_stuff.c \
-		main_test.c \
-		$(SRCDIR)/map_utils.c \
-		$(SRCDIR)/valid_chars.c
+SRC = $(SRCDIR)/get_infile/infile_to_tab.c \
+      $(SRCDIR)/map_to_rectangle.c \
+      $(SRCDIR)/utils/free_stuff.c \
+      main_test.c \
+      $(SRCDIR)/utils/map_utils.c \
+	  $(SRCDIR)/extract_map.c \
+      $(SRCDIR)/valid_chars.c \
+      $(SRCDIR)/get_params/extract_params.c \
+	  $(SRCDIR)/get_params/params_utils.c
+
+# Objets : transforme chaque .c en obj/chemin/vers/fichier.o
 OBJ = $(SRC:%.c=$(OBJDIR)/%.o)
 
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I$(LIBFTDIR)
 
+
 LIBFT = $(LIBFTDIR)/libft.a
 
 
-
-all: $(OBJDIR) $(NAME)
-
-$(OBJDIR):
-	mkdir -p $(OBJDIR)/$(SRCDIR)
+all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
-
+# Compilation des .o avec création auto des dossiers
 $(OBJDIR)/%.o: %.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
+
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFTDIR)
+
 
 clean:
 	$(MAKE) clean -C $(LIBFTDIR)

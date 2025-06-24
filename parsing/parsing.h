@@ -50,11 +50,12 @@ typedef struct s_param
 
     char	*f_color_str;
 	char	*c_color_str;
+    t_data  *data;
 }   t_param;
 
 //get_params/extract_params
 int     check_param(char **infile, t_param *param, int map_index);
-void    is_color_f(t_param *param);
+int    is_color(char *color_str, int color_int[3]);
 
 //get_infile/infile_to_tab : get the whole infile (map.cub) into a char **
 char    **get_infile(char *filename, int *map_index);

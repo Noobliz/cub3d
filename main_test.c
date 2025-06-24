@@ -9,7 +9,7 @@ int main(int argc, char **argv)
     char **map_rect;
     map_rect = NULL;
     t_param param;
-    //t_data data;
+    t_data data;
     if (argc != 2)
     {
         ft_printf("enter an infile .cub\n");
@@ -19,7 +19,7 @@ int main(int argc, char **argv)
     if (!map_rect)
         return (1);
     //printf("f_color : %s\n", param.f_color_str);
-    is_color_f(&param);
+    is_color(param.f_color_str, data.F);
     //printf("f_color : %s\n", param.f_color_str);
     //printf("c_color : %s\n", param.c_color_str);
 

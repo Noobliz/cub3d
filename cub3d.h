@@ -10,8 +10,8 @@ typedef struct s_data
     char    *WE;
     char    *EA;
 
-    char    *F;
-    char    *C;
+    int    F[3];
+    int    C[3];
 
 }   t_data;
 

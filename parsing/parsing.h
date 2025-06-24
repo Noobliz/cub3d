@@ -6,7 +6,7 @@
 /*   By: lguiet <lguiet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 11:26:23 by lguiet            #+#    #+#             */
-/*   Updated: 2025/06/24 12:02:41 by lguiet           ###   ########.fr       */
+/*   Updated: 2025/06/24 12:12:13 by lguiet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_param
 
 //get_params/extract_params
 int     check_param(char **infile, t_param *param, int map_index);
-
+void    is_color_f(t_param *param);
 
 //get_infile/infile_to_tab : get the whole infile (map.cub) into a char **
 char    **get_infile(char *filename, int *map_index);

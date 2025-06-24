@@ -15,6 +15,7 @@ SRC = $(SRCDIR)/get_infile/infile_to_tab.c \
 	  $(SRCDIR)/extract_map.c \
       $(SRCDIR)/valid_chars.c \
       $(SRCDIR)/get_params/extract_params.c \
+	  $(SRCDIR)/check_params/check_colors.c \
 	  $(SRCDIR)/get_params/params_utils.c
 
 # Objets : transforme chaque .c en obj/chemin/vers/fichier.o

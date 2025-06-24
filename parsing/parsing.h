@@ -50,7 +50,7 @@ typedef struct s_param
 
     char	*f_color_str;
 	char	*c_color_str;
-    t_data  *data;
+
 }   t_param;
 
 //get_params/extract_params

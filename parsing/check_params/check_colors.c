@@ -13,41 +13,40 @@
 #include "../parsing.h"
 #include "../../cub3d.h"
 
-// char** split_colors(char *trimmed)
-// {
-//     char    **split;
-//     split = ft_split(trimmed, ',');
-//     int i = 0;
-//     while(split && split[i])
-//     {
-//         printf("%s\n", split[i]);
-//         i++;
-//     }
-//     printf("%d\n", i);
-//     return (split);
-// }
 
 int    is_color(char *color_str, int color_int[3])
 {
     char *trimmed;
-    trimmed = (skip_spaces(color_str));
-    char    **split_clr = NULL;
+    char    **split_clr;
     int i;
+    int res;
+
+    split_clr = NULL;
+    trimmed = ft_strtrim(color_str, " \t \n");
+    if (!trimmed)
+    {
+        perror("malloc");
+        return (0);
+    }
     i = 0;
-    int res = -1;
+    res = -1;
     printf("trimmed :%s\n", trimmed);
     while(trimmed[i])
     {
         if (!ft_isdigit(trimmed[i]) && trimmed[i] != ',' && trimmed[i] != '\n')
         {
+            free(trimmed);
             write(2, "Error\ncolors should be described as [R,G,B]\n", 45);
             return (0);
         }
         i++;
     }
     split_clr = ft_split(trimmed, ',');
-    //if(!split_clr)
-    //return
+    if(!split_clr)
+    {
+        free(trimmed);
+        return(0);
+    }
     i = 0;
     while(split_clr && split_clr[i])
         i++;
@@ -55,6 +54,7 @@ int    is_color(char *color_str, int color_int[3])
     {
         write(2, "Error\ncolors should be [R,G,B]\n", 32);
         free_map(split_clr);
+        free(trimmed);
         return (0);
     }
     i = 0;
@@ -64,7 +64,8 @@ int    is_color(char *color_str, int color_int[3])
         if (res < 0 || res > 255)
         {
             free_map(split_clr);
-            write(2, "Error\ncolors not within range\n", 33);
+            free(trimmed);
+            write(2, "Error\ncolors not within range\n", 31);
             return (0);
         }
         color_int[i] = res;    
@@ -76,6 +77,7 @@ int    is_color(char *color_str, int color_int[3])
         printf("colors int[%d] = %d\n", i, color_int[i]);
         i++;
     }
+    free(trimmed);
     free_map(split_clr);
     return (1);
     

@@ -6,11 +6,12 @@
 /*   By: lguiet <lguiet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 11:26:23 by lguiet            #+#    #+#             */
-/*   Updated: 2025/06/19 11:26:36 by lguiet           ###   ########.fr       */
+/*   Updated: 2025/06/24 12:02:41 by lguiet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+// PARAMS = COLORS AND TEXTURES
+// MAP = the map itself
 
 #ifndef PARSING_H
 # define PARSING_H
@@ -57,7 +58,9 @@ int     check_param(char **infile, t_param *param, int map_index);
 
 //get_infile/infile_to_tab : get the whole infile (map.cub) into a char **
 char    **get_infile(char *filename, int *map_index);
-//skip the textures lines and then copy into a **tab starting from the first valid char found (1 / 0 / N / S etc)
+
+
+//skip the textures lines and then copy into a **tab starting from the map index(where the map was found)
 char	**extract_map(char **infile, int map_index);
 
 //make the original map rectangle
@@ -69,10 +72,10 @@ int     check_holes(char **map);
 //valid_chars
 void    map_is_valid(char ***map_rect, char *argv, t_param *param);
 
+
 //free_stuff
 void    free_map(char **map);
 void    free_param(t_param *param);
-
 
 //utils
 void    print_map(char **map);

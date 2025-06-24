@@ -2,12 +2,13 @@
 #include "../parsing.h"
 
 //better than strchr because avoid finding the occurence anywhere
-size_t	ft_strspn(const char *s, const char *accept)
+int	ft_strspn(const char *s, const char *accept)
 {
-	size_t i = 0;
-	size_t j;
+	int i;
+	int j;
 	int	match;
 
+    i = 0;
 	while (s[i])
 	{
 		match = 0;
@@ -41,7 +42,7 @@ int	is_map_line(char *line)
 		i++;
 	}
 
-	if (i == 0 || ft_strspn(line, " \n") == (size_t)i)
+	if (i == 0 || ft_strspn(line, " \n") == i)
 		return (0);
 	return (1);
 }
@@ -156,5 +157,7 @@ char **get_infile(char *filename, int *map_index)
         line = get_next_line(fd);
     }
     close(fd);
+    if (!map)
+        write(2, "Error\ninfile is empty\n", 23);
     return (map);
 }

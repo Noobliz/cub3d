@@ -126,7 +126,11 @@ int end_with_walls(char **map)
     while(map && map[i])
     {
         if (map[i][len - 2] != '1' && map[i][len - 2] != HOLE)
+        {
+            write(2, "doesn't end with walls\n", 24);
+            free_map(map);
             return (0);
+        }
         i++;
     }
     return (1);
@@ -140,11 +144,7 @@ int check_holes(char **map)
     i = 0;
     j = 0;
     if (!end_with_walls(map))
-    {
-        write(2, "doesn't end with walls\n", 24);
-        free_map(map);
         return (0);
-    }
     while (map && map[i])
     {
         j = 0;
@@ -166,27 +166,24 @@ int check_holes(char **map)
 void map_is_valid(char ***map_rect, char *argv, t_param *param)
 {
     (void)map_rect;
-    // map_rect = NULL;
-    //t_param param;
-    int map_index;
     char **infile;
     char    **map;
 
-    map_index = -1;
+    param->map_index = -1;
     map = NULL;
     infile = NULL;
-    infile = get_infile(argv, &map_index);
+    infile = get_infile(argv, param);
     if (!infile)
         return ;
     //print_map(infile);
     init_params_flags(param);
-    if (!check_param(infile, param, map_index))
+    if (!check_param(infile, param, param->map_index))
     {
         free_param(param);
         free_map(infile);
         return ;
     }
-    map = extract_map(infile, map_index);
+    map = extract_map(infile, param->map_index);
     if (!map)
     {
         free_param(param);

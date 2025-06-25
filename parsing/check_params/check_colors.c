@@ -79,7 +79,6 @@ int    is_color(char *color_str, int color_int[3])
 {
     char *trimmed;
     char    **split_clr;
-    int i;
 
     split_clr = NULL;
     trimmed = ft_strtrim(color_str, " \t \n");
@@ -88,19 +87,11 @@ int    is_color(char *color_str, int color_int[3])
         perror("malloc");
         return (0);
     }
-    printf("trimmed :%s\n", trimmed);
-    if(!color_valid_char(trimmed))
+    //printf("trimmed :%s\n", trimmed);
+    if(!color_valid_char(trimmed) 
+        || !ft_split_colors(&split_clr, trimmed) 
+        || !get_colors_int(split_clr, trimmed, color_int))
         return (0);
-    if (!ft_split_colors(&split_clr, trimmed))
-        return (0);
-    if (!get_colors_int(split_clr, trimmed, color_int))
-        return (0);
-    i = 0;
-    while (i < 3)
-    {
-        printf("colors int[%d] = %d\n", i, color_int[i]);
-        i++;
-    }
     free(trimmed);
     free_map(split_clr);
     return (1);   

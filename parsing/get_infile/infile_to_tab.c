@@ -47,14 +47,12 @@ int	is_map_line(char *line)
 	return (1);
 }
 
-
-
 //malloc of new line in **tab, 1 for line 1 for \0
 static char **add_line(char **map, char *line, int *count)
 {
     int i;
     i = 0;
-    if (line && (/*line[0] == '\n' || */line[0] == '\0'))
+    if (line && (line[0] == '\0'))
         return (NULL);
     char **new_map = malloc(sizeof(char *) * (*count + 2));
     if (!new_map)
@@ -98,36 +96,50 @@ int valid_name(char *name)
     }
     return (1);
 }
-//skip the textures lines and then copy into a **tab starting from the first valid char found (1 / 0 / N / S etc)
-char **get_infile(char *filename, int *map_index)
+int    open_fd(char *filename, int *fd)
 {
-    int fd;
-    int map_found;
-    int count;
-    char    *line;
-    char    **map;
-
-    line = NULL;
     if (!valid_name(filename))
-        return (NULL);
-    fd = open(filename, O_RDONLY);
-    if (fd < 0)
+        return (0);
+    *fd = open(filename, O_RDONLY);
+    if (*fd < 0)
     {
         write(2, "error opening map\n", 19);
-        return (NULL);
+        return (0);
     }
-    map = NULL;
-    map_found = 0;
-    count = 0;
+    return (1);
+}
 
+void    free_line_close_fd(char *line, int *fd)
+{
+    line = get_next_line(*fd);
+    while (line)
+    {
+        free(line);
+        line = get_next_line(*fd);
+    }
+    close(*fd);
+}
+
+void find_map(int *map_found, char *line, t_param *param, int count)
+{
+    if (*map_found == 0 && is_map_line(line))
+    {
+        param->map_index = count;
+        *map_found = 1;
+    }
+}
+
+void    copy_content_find_map(char *line, int fd, t_param *param, char ***map)
+{
+    int count;
+    int map_found;
+
+    count = 0;
+    map_found = 0;
     line = get_next_line(fd);
     while (line)
     {
-        if (map_found == 0 && is_map_line(line))
-        {
-            *map_index = count;
-            map_found = 1;
-        }
+        find_map(&map_found, line, param, count);
         if (map_found)
         {
             if (line[0] == '\n' || line[0] == '\0' || line[0] == '\t')
@@ -136,27 +148,26 @@ char **get_infile(char *filename, int *map_index)
                 line = NULL;
                 break;
             }
-            map = add_line(map, line, &count);
+            *map = add_line(*map, line, &count);
         }
-        //add lines that are not part of the map
         else if (line)
-        {
-            // free(line);
-            // line = NULL;
-            map = add_line(map, line, &count);
-        }
+            *map = add_line(*map, line, &count);
         line = get_next_line(fd);
     }
+}
+//skip the textures lines and then copy into a **tab starting from the first valid char found (1 / 0 / N / S etc)
+char **get_infile(char *filename, t_param *param)
+{
+    int fd;
+    char    *line;
+    char    **map;
 
-    //cleaning
-   // printf("map index : %d\n", *map_index);
-    line = get_next_line(fd);
-    while (line)
-    {
-        free(line);
-        line = get_next_line(fd);
-    }
-    close(fd);
+    line = NULL;
+    map = NULL;
+    if (!open_fd(filename, &fd))
+        return (0);
+    copy_content_find_map(line, fd, param, &map);
+    free_line_close_fd(line, &fd);
     if (!map)
         write(2, "Error\ninfile is empty\n", 23);
     return (map);

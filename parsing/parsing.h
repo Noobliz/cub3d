@@ -51,6 +51,8 @@ typedef struct s_param
     char	*f_color_str;
 	char	*c_color_str;
 
+    int     map_index;
+
 }   t_param;
 
 //get_params/extract_params
@@ -58,7 +60,7 @@ int     check_param(char **infile, t_param *param, int map_index);
 int    is_color(char *color_str, int color_int[3]);
 
 //get_infile/infile_to_tab : get the whole infile (map.cub) into a char **
-char    **get_infile(char *filename, int *map_index);
+char    **get_infile(char *filename, t_param *param);
 
 
 //skip the textures lines and then copy into a **tab starting from the map index(where the map was found)

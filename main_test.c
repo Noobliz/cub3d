@@ -18,13 +18,19 @@ int main(int argc, char **argv)
     map_is_valid(&map_rect, argv[1], &param);
     if (!map_rect)
         return (1);
-    //printf("f_color : %s\n", param.f_color_str);
-    is_color(param.f_color_str, data.F);
+    data.map = map_rect;
+    //print_map(data.map);
+
+    if (!is_color(param.f_color_str, data.F) 
+        || !is_color(param.c_color_str, data.C))
+        {
+            free_map(map_rect);
+            free_param(&param);
+            return (1);
+        }
     //printf("f_color : %s\n", param.f_color_str);
     //printf("c_color : %s\n", param.c_color_str);
 
-    //data.map = map_rect;
-    //print_map(data.map);
     free_map(map_rect);
     free_param(&param);
 

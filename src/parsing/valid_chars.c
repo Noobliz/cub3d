@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   valid_chars.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lguiet <lguiet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 11:23:37 by lguiet            #+#    #+#             */
-/*   Updated: 2025/06/19 12:31:10 by lguiet           ###   ########.fr       */
+/*   Updated: 2025/06/27 14:38:26 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../../header/parsing.h"
 
 
 int one_player(char **map)
@@ -74,7 +74,7 @@ int end_of_line(char c)
 }
 // int has_holes(char **map, int i, int j)
 // {
-//     if ((j == 0 && (map[i][j] != '1' && map[i][j] != HOLE)) 
+//     if ((j == 0 && (map[i][j] != '1' && map[i][j] != HOLE))
 //         || (i == 0 && map[0][j] != '1' && map[0][j] != HOLE))
 //         {
 //             printf("HELOO\n");
@@ -85,7 +85,7 @@ int end_of_line(char c)
 //         if ((map[i][j + 1] == HOLE) || (j > 0 && map[i][j - 1] == HOLE) || end_of_line(map[i][j + 1]))
 //             return (1);
 //         if ((i > 0 && map[i - 1][j] == HOLE)
-//             || (map[i + 1] != NULL && map[i + 1][j] == HOLE) 
+//             || (map[i + 1] != NULL && map[i + 1][j] == HOLE)
 //             || (map[i + 1] == NULL && map[i - 1][j] == '0'))
 //             return (1);
 //     }
@@ -94,7 +94,7 @@ int end_of_line(char c)
 
 int has_holes(char **map, int i, int j)
 {
-    if ((j == 0 && (map[i][j] != '1' && map[i][j] != HOLE && map[i][j] != '\n')) 
+    if ((j == 0 && (map[i][j] != '1' && map[i][j] != HOLE && map[i][j] != '\n'))
         || (i == 0 && (map[0][j] != '1' && map[0][j] != HOLE && map[0][j] != '\n')))
     {
         printf("HELOO at [%d][%d] = '%c'\n", i, j, map[i][j]);

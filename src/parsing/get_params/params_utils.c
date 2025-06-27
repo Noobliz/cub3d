@@ -1,5 +1,5 @@
 
-#include "../parsing.h"
+#include "../../../header/parsing.h"
 
 void    print_param(t_param param)
 {
@@ -42,7 +42,7 @@ int tab_size(char **tab, int map_index)
 {
     int i;
     int height;
-    
+
     i = map_index;
     height = 0;
     while (tab && tab[i])
@@ -51,5 +51,5 @@ int tab_size(char **tab, int map_index)
 		i++;
 	}
     return (height);
-    
+
 }

@@ -1,5 +1,5 @@
 
-#include "parsing.h"
+#include "../../header/parsing.h"
 
 //extract de map from **infile, removing all parameters lines
 //return the new map

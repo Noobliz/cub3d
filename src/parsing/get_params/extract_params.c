@@ -1,15 +1,15 @@
 
-#include "../parsing.h"
+#include "../../../header/parsing.h"
 
 
 
 int has_all_params(t_param param)
 {
-    if (param.C_flag == 1 && param.F_flag == 1 && param.EA_flag == 1 
+    if (param.C_flag == 1 && param.F_flag == 1 && param.EA_flag == 1
         && param.NO_flag == 1 && param.SO_flag == 1 && param.WE_flag == 1)
         return (1);
-    
-    write(2, 
+
+    write(2,
         "Error\nmake sure all parameters are described and in correct position\n",
          70);
     return (0);
@@ -139,7 +139,3 @@ int    check_param(char **infile, t_param *param, int map_index)
 
     return (1);
 }
-
-
-
-

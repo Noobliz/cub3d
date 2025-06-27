@@ -1,6 +1,6 @@
 
-#include "parsing/parsing.h"
-#include "cub3d.h"
+#include "../header/parsing.h"
+#include "../header/cub3d.h"
 
 
 
@@ -21,7 +21,7 @@ int main(int argc, char **argv)
     data.map = map_rect;
     //print_map(data.map);
 
-    if (!is_color(param.f_color_str, data.F) 
+    if (!is_color(param.f_color_str, data.F)
         || !is_color(param.c_color_str, data.C))
         {
             free_map(map_rect);

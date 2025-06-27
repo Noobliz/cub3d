@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   check_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lguiet <lguiet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 12:04:25 by lguiet            #+#    #+#             */
-/*   Updated: 2025/06/25 12:15:54 by lguiet           ###   ########.fr       */
+/*   Updated: 2025/06/27 14:39:11 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing.h"
-#include "../../cub3d.h"
+#include "../../../header/parsing.h"
+#include "../../../header/cub3d.h"
 
 int color_valid_char(char *trimmed)
 {
@@ -69,7 +69,7 @@ int get_colors_int(char **split_clr, char *trimmed, int color_int[3])
             write(2, "Error\ncolors not within range\n", 31);
             return (0);
         }
-        color_int[i] = res;    
+        color_int[i] = res;
         i++;
     }
     return (1);
@@ -88,11 +88,11 @@ int    is_color(char *color_str, int color_int[3])
         return (0);
     }
     //printf("trimmed :%s\n", trimmed);
-    if(!color_valid_char(trimmed) 
-        || !ft_split_colors(&split_clr, trimmed) 
+    if(!color_valid_char(trimmed)
+        || !ft_split_colors(&split_clr, trimmed)
         || !get_colors_int(split_clr, trimmed, color_int))
         return (0);
     free(trimmed);
     free_map(split_clr);
-    return (1);   
+    return (1);
 }

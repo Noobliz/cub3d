@@ -1,4 +1,4 @@
-#include "parsing.h"
+#include "../../header/parsing.h"
 
 int get_height(char **map)
 {

@@ -84,7 +84,7 @@ void    free_param(t_param *param);
 void    print_map(char **map);
 int     valid_char(char *line);
 int     is_player(char c);
-int	    ft_strcmp(const char *s1, const char *s2);
+//int	    ft_strcmp(const char *s1, const char *s2);
 char    *skip_spaces(char *line);
 
 //params_utils in get_params

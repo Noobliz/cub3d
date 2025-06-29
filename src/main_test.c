@@ -2,7 +2,13 @@
 #include "../header/parsing.h"
 #include "../header/cub3d.h"
 
-
+void    init_textures(t_data *data, t_param param)
+{
+    data->EA = param.ea_path;
+    data->NO = param.no_path;
+    data->SO = param.so_path;
+    data->WE = param.we_path;
+}
 
 int main(int argc, char **argv)
 {
@@ -10,6 +16,7 @@ int main(int argc, char **argv)
     map_rect = NULL;
     t_param param;
     t_data data;
+    data.map = NULL;
     if (argc != 2)
     {
         ft_printf("enter an infile .cub\n");
@@ -19,8 +26,8 @@ int main(int argc, char **argv)
     if (!map_rect)
         return (1);
     data.map = map_rect;
+    init_textures(&data, param);
     //print_map(data.map);
-
     if (!is_color(param.f_color_str, data.F)
         || !is_color(param.c_color_str, data.C))
         {

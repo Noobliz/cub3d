@@ -6,13 +6,13 @@
 /*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 11:02:19 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/06/30 11:10:24 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/06/30 11:31:00 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../libft/libft.h"
-#include "../../minilibx-linux/
-
+#include "../../minilibx-linux/mlx.h"
+#include "../../header/cub3d.h"
 #define map_width 24
 #define map_height 24
 #define screen_width 640
@@ -48,6 +48,15 @@ int world_map[map_width][map_height]=
 
 int main(void)
 {
+	t_mlx_win window;
+
+	window.mlx_ptr = mlx_init();
+	if (window.mlx_ptr == NULL)
+		return (1);
+	window.mlx_ptr = mlx_new_window(window.mlx_ptr, screen_width, screen_height, "Cub2D");
+	if (window.mlx_ptr == NULL)
+		return (1);
+	mlx_loop(window.mlx_ptr);
 	// double pos_x = 22, pos_y = 12;  //_x and _y start position
 	// double dir_x = -1, dir_y = 0; //initial direction vector
 	// double plane_x = 0, plane_y = 0.66; //the 2d raycaster version of camera plane
@@ -55,5 +64,5 @@ int main(void)
 	// double time = 0; //time of current frame
 	// double oldTime = 0; //time of previous frame
 
-	screen(screen_width, screen_height, 0, "Raycaster");
+	// screen(screen_width, screen_height, 0, "Raycaster");
 }

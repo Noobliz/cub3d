@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 //####### includes ########//
-# include "parsing.h"
+//# include "parsing.h"
 # include "../minilibx-linux/mlx.h"
 
 //####### structures ######//

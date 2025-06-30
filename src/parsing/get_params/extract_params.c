@@ -45,7 +45,7 @@ int	alloc_param_value(char *trimmed, char *id, char **target, int comp)
 {
 	if (ft_strncmp(trimmed, id, comp) == 0)
 	{
-		*target = ft_strdup(trimmed + comp);
+		*target = ft_strtrim((trimmed + comp), " \n");
 		if (!*target)
 			return (0);
 	}

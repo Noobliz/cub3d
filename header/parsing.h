@@ -17,6 +17,7 @@
 # define PARSING_H
 
 #include "../libft/libft.h"
+#include "cub3d.h"
 #include <fcntl.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -57,7 +58,8 @@ typedef struct s_param
 
 //get_params/extract_params
 int     check_param(char **infile, t_param *param, int map_index);
-int    is_color(char *color_str, int color_int[3]);
+int     is_color(char *color_str, int color_int[3]);
+int     check_all_textures(t_data *data);
 
 //get_infile/infile_to_tab : get the whole infile (map.cub) into a char **
 char    **get_infile(char *filename, t_param *param);

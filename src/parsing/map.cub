@@ -5,9 +5,9 @@ EA ./textures/xpm/east_rock.xpm
 
 
 
-NO  ./textures/xpm/north_rock.xpm
+NO ./textures/xpm/north_rock.xpm
 
-   WE   ./textures/xpm/west_rock.xpm
+   WE ./textures/xpm/west_rock.xpm
 
 
 

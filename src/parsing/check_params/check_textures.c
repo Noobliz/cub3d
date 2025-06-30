@@ -10,7 +10,7 @@ int check_texture_path(void *mlx_ptr, char *texture_path)
     void    *img;
     if (!texture_path)
     {
-        write(2, "Error: texture path is NULL\n", 29);
+        write(2, "Error\ntexture path is NULL\n", 28);
         return (0);
     }
     img = mlx_xpm_file_to_image(mlx_ptr, texture_path, &width, &height);
@@ -31,7 +31,7 @@ int check_all_textures(t_data *data)
     mlx_win.mlx_ptr = mlx_init();
     if (!mlx_win.mlx_ptr)
     {
-        write(2, "Error: failed to init mlx\n", 27);
+        write(2, "Error\nfailed to init mlx\n", 26);
         return (0);
     }
 

@@ -194,7 +194,10 @@ void map_is_valid(char ***map_rect, char *argv, t_param *param)
     //print_map(map);
     *map_rect = map_to_rectangle(map);
     if (!*map_rect)
+    {
+        free_param(param);
         return ;
+    }
     print_map(*map_rect);
     if (!has_valid_char(*map_rect) || !check_holes(*map_rect))
     {

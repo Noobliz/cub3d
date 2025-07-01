@@ -11,3 +11,6 @@
  ~30/06/25
  |Vrai inclusion de la minilibX dans le git, creation du dossier graphic,
  | avec dedans le test du notion sur le raycasting.
+ 
+ ~01/07/25
+ |Rajout de la lib math.h dans cub3d.h

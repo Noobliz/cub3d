@@ -8,6 +8,7 @@ LIBFTDIR = libft
 
 # Sources
 SRC := src/main_test.c \
+		src/graphic/main.c \
 		src/$(PARS)/get_infile/infile_to_tab.c \
 		src/$(PARS)/map_to_rectangle.c \
 		src/$(PARS)/utils/free_stuff.c \

@@ -9,6 +9,7 @@ void    init_textures(t_data *data, t_param param)
     data->SO = param.so_path;
     data->WE = param.we_path;
 }
+
 int guardian(t_data *data, t_param *param, int argc, char **argv)
 {
     char **map_rect;
@@ -34,19 +35,23 @@ int guardian(t_data *data, t_param *param, int argc, char **argv)
     }
     return (1);
 }
-int main(int argc, char **argv)
-{
-    t_param param;
-    t_data data;
-    data.map = NULL;
 
-    //desactivez ca si vous ne testez pas avec des vrais parametres
-    if (!guardian(&data, &param, argc, argv))
-        return (1);
+
+
+
+// int main(int argc, char **argv)
+// {
+//     t_param param;
+//     t_data data;
+//     data.map = NULL;
+
+//     //desactivez ca si vous ne testez pas avec des vrais parametres
+//     if (!guardian(&data, &param, argc, argv))
+//         return (1);
     
-    //inserer l'exec ici
+//     //inserer l'exec ici
 
-    free_map(data.map);
-    free_param(&param);
-    return (0);
-}
+//     free_map(data.map);
+//     free_param(&param);
+//     return (0);
+// }

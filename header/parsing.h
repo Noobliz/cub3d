@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pjurdana <pjurdana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 11:26:23 by lguiet            #+#    #+#             */
-/*   Updated: 2025/06/27 14:17:33 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/07/02 14:10:58 by pjurdana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 #include "../libft/libft.h"
 #include "cub3d.h"
+//#include "../../header/cub3d.h"
 #include <fcntl.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -55,6 +56,10 @@ typedef struct s_param
     int     map_index;
 
 }   t_param;
+
+// GUARDIAN
+int guardian(t_data *data, t_param *param, int argc, char **argv);
+
 
 //get_params/extract_params
 int     check_param(char **infile, t_param *param, int map_index);

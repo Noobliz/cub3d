@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pjurdana <pjurdana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 14:15:56 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/06/30 13:13:40 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/07/02 16:37:13 by pjurdana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,60 @@
 # define CUB3D_H
 
 //####### includes ########//
-//# include "parsing.h"
+// # include "parsing.h"
 # include "../minilibx-linux/mlx.h"
 # include <math.h>
 
+#define WHITE 0xFFFFFF
+#define BLACK 0x000000
+#define GREEN 0x00FF00
+
+
 //####### structures ######//
+
+typedef struct s_player
+{
+	void	*player_img;
+	
+	float	player_x;
+	float	player_y;
+	
+	int		move_speed;
+	
+}	t_player;
+
+typedef struct	t_img
+{
+	void	*img_ptr;
+	
+	int		bpp;
+	int		line_size;
+	int		endian;
+
+	char	*img_addr;
+
+
+}	t_img;
+
+typedef struct s_mlx_win
+{
+	void	*mlx_ptr;
+	void	*mlx_win;
+
+
+	int		img_width;
+	int		img_height;
+
+	// char	*img_ptr;
+	// char	*img_data;
+
+
+	// int		width;
+	// int		height;
+	// void	*time_value; //Permettra d'avoir un timer de fps afin d'appler les refresh au nombre d'image par seconde pour eviter d'avoir a le faire a chaque mlx_loop;
+
+}		t_mlx_win;
+
 typedef struct s_data
 {
 	char	**map;
@@ -29,16 +78,14 @@ typedef struct s_data
 
 	int		F[3];
 	int		C[3];
+	t_mlx_win	*win;
+	t_player	*player;
+	t_img		img;
 
 }	t_data;
 
-typedef struct s_mlx_win
-{
-	void	*mlx_ptr;
-	void	*mlx_win;
-	// int		width;
-	// int		height;
-	// void	*time_value; //Permettra d'avoir un timer de fps afin d'appler les refresh au nombre d'image par seconde pour eviter d'avoir a le faire a chaque mlx_loop;
-}		t_mlx_win;
+void	render_map(t_data *data);
+
+
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjurdana <pjurdana@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lguiet <lguiet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 11:02:19 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/07/03 10:30:28 by pjurdana         ###   ########.fr       */
+/*   Updated: 2025/07/03 10:44:36 by lguiet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../../minilibx-linux/mlx.h"
 #include "../../header/cub3d.h"
 # include "../../header/parsing.h"
+
 #define map_width 24
 #define map_height 24
 #define SCREEN_WIDTH 640
@@ -34,19 +35,19 @@ int	handle_key(int keycode, t_data *data)
 	if (keycode == 65307)
 		exit (0); // need to go to a free function
 
-	if (keycode == 'w' || keycode == 119)
+	if (keycode == 'w' || keycode == 119 || keycode == XK_Up)
 		new_y = data->player->player_y - data->player->move_speed;
 		// data->player->player_y -= data->player->move_speed;
 
-	if (keycode == 's' || keycode == 115)
+	if (keycode == 's' || keycode == 115 || keycode == XK_Down)
 		new_y = data->player->player_y + data->player->move_speed;	
 		// data->player->player_y += data->player->move_speed;
 	
-	if (keycode == 'a' || keycode == 97)
+	if (keycode == 'a' || keycode == 97 || keycode == XK_Left)
 		new_x = data->player->player_x - data->player->move_speed;
 		// data->player->player_x -= data->player->move_speed;
 		
-	if (keycode == 'd' || keycode == 100)
+	if (keycode == 'd' || keycode == 100 || keycode == XK_Right)
 		new_x = data->player->player_x + data->player->move_speed;
 		// data->player->player_x += data->player->move_speed;
 	if (data->map[new_y][new_x] != '1')
@@ -208,7 +209,7 @@ void	render_map(t_data *data)
 
 
 #include <stdio.h>
-# include <X11/X.h>
+
 int main(int argc, char **argv)
 {
 	t_mlx_win win;

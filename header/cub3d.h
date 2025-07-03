@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjurdana <pjurdana@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lguiet <lguiet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 14:15:56 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/07/03 10:22:53 by pjurdana         ###   ########.fr       */
+/*   Updated: 2025/07/03 10:43:20 by lguiet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 //####### includes ########//
 // # include "parsing.h"
 # include "../minilibx-linux/mlx.h"
+# include <X11/X.h>
 # include <math.h>
+# include <X11/keysym.h>
 
 #define WHITE 0xFFFFFF
 #define BLACK 0x000000

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lguiet <lguiet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pjurdana <pjurdana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 11:02:19 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/07/03 09:52:33 by lguiet           ###   ########.fr       */
+/*   Updated: 2025/07/03 10:30:28 by pjurdana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,32 +28,32 @@ int	handle_key(int keycode, t_data *data)
 {
 
 // need to protect the map limit for the player
-	// int	new_x;
-	// int	new_y;
+	int	new_x = data->player->player_x;
+	int	new_y = data->player->player_y;
 	
 	if (keycode == 65307)
 		exit (0); // need to go to a free function
 
 	if (keycode == 'w' || keycode == 119)
-		data->player->player_y -= data->player->move_speed;
-		//new_y = data->player->player_y - data->player->move_speed;
+		new_y = data->player->player_y - data->player->move_speed;
+		// data->player->player_y -= data->player->move_speed;
 
 	if (keycode == 's' || keycode == 115)
-		data->player->player_y += data->player->move_speed;
-		//new_y = data->player->player_y + data->player->move_speed;	
+		new_y = data->player->player_y + data->player->move_speed;	
+		// data->player->player_y += data->player->move_speed;
 	
 	if (keycode == 'a' || keycode == 97)
-		data->player->player_x -= data->player->move_speed;
-		//new_x = data->player->player_x - data->player->move_speed;
+		new_x = data->player->player_x - data->player->move_speed;
+		// data->player->player_x -= data->player->move_speed;
 		
 	if (keycode == 'd' || keycode == 100)
-		data->player->player_x += data->player->move_speed;
-		//new_x = data->player->player_x + data->player->move_speed;
-	// if (data->map[new_y][new_x] != '\0' && data->map[new_y][new_x] != '1')
-	// {
-	// 	data->player->player_y = new_y;
-	// 	data->player->player_x = new_x;
-	// }
+		new_x = data->player->player_x + data->player->move_speed;
+		// data->player->player_x += data->player->move_speed;
+	if (data->map[new_y][new_x] != '1')
+	{
+		data->player->player_y = new_y;
+		data->player->player_x = new_x;
+	}
 	// mlx_clear_window(data->win->mlx_ptr, data->win->mlx_win);
 	render_map(data);
 	// mlx_put_image_to_window(data->win->mlx_ptr, data->win->mlx_win, data->player->player_img, data->player->player_x, data->player->player_y);
@@ -126,30 +126,20 @@ void draw_img_player(t_data *data, int x, int y, char dir)
 
 	for (py = 0; py < 24; py++)
 	{
-		for (px = 0; px < 24; px++)
+		for (px = 0; px < 24; px++) // ACHTUNG pas l'EFFORT
 		{
-			// Coordonnées relatives dans le TILE
 			int rx = px;
 			int ry = py;
 
 			int draw = 0;
-
-			// Triangle pointe vers le haut (Nord)
 			if (dir == 'N' && ry < 24 / 2 && abs(rx - 24 / 2) < ry)
 				draw = 1;
-
-			// Sud
 			else if (dir == 'S' && ry > 24 / 2 && abs(rx - 24 / 2) < 24 - ry)
 				draw = 1;
-
-			// Est
 			else if (dir == 'E' && rx > 24 / 2 && abs(ry - 24 / 2) < 24 - rx)
 				draw = 1;
-
-			// Ouest
 			else if (dir == 'W' && rx < 24 / 2 && abs(ry - 24 / 2) < rx)
 				draw = 1;
-
 			if (draw)
 				home_made_pixel_put(&data->img, tx + px, ty + py, 0x00FF0000); // RED
 		}
@@ -193,7 +183,7 @@ void	render_map(t_data *data)
 				color = BLACK;
 			else
 				color = GREEN;
-			if (data->map[y][x] == 'N' || data->map[y][x] == 'S' || data->map[y][x] == 'E' || data->map[y][x] == 'W')
+			if (is_player(data->map[y][x]))
 				data->player->p_dir = data->map[y][x];
 			draw_img(data, color, x, y); // x * 24, y * 24);
 			x++;

@@ -6,7 +6,7 @@
 /*   By: pjurdana <pjurdana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 14:15:56 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/07/03 09:03:49 by pjurdana         ###   ########.fr       */
+/*   Updated: 2025/07/03 10:22:53 by pjurdana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_player
 	float	player_x;
 	float	player_y;
 	
-	int		move_speed;
+	float	move_speed;
 	
 	char	p_dir;
 }	t_player;

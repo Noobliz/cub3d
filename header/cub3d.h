@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lguiet <lguiet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 14:15:56 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/07/03 11:14:17 by lguiet           ###   ########.fr       */
+/*   Updated: 2025/07/03 16:29:37 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 //####### includes ########//
-// # include "parsing.h"
+# include "parsing.h"
 # include "../minilibx-linux/mlx.h"
 # include <X11/X.h>
 # include <math.h>
@@ -31,19 +31,19 @@ struct s_param;
 typedef struct s_player
 {
 	void	*player_img;
-	
+
 	float	player_x;
 	float	player_y;
-	
+
 	float	move_speed;
-	
+
 	char	p_dir;
 }	t_player;
 
 typedef struct	t_img
 {
 	void	*img_ptr;
-	
+
 	int		bpp;
 	int		line_size;
 	int		endian;

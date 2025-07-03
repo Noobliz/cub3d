@@ -6,7 +6,7 @@
 /*   By: lguiet <lguiet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 14:15:56 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/07/03 10:43:20 by lguiet           ###   ########.fr       */
+/*   Updated: 2025/07/03 11:14:17 by lguiet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 
 //####### structures ######//
+struct s_param;
 
 typedef struct s_player
 {
@@ -81,6 +82,7 @@ typedef struct s_data
 
 	int		F[3];
 	int		C[3];
+	struct s_param	*param;
 	t_mlx_win	*win;
 	t_player	*player;
 	t_img		img;

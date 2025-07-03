@@ -6,7 +6,7 @@
 /*   By: lguiet <lguiet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 11:02:19 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/07/03 10:44:36 by lguiet           ###   ########.fr       */
+/*   Updated: 2025/07/03 11:15:26 by lguiet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,12 @@
 #define PLAYER_SIZE 10
 // #define MOVE_SPEED 20
 
-
+void	end_game(t_data *data)
+{
+	free_map(data->map);
+	free_param(data->param);
+	exit (0);
+}
 
 int	handle_key(int keycode, t_data *data)
 {
@@ -33,7 +38,11 @@ int	handle_key(int keycode, t_data *data)
 	int	new_y = data->player->player_y;
 	
 	if (keycode == 65307)
-		exit (0); // need to go to a free function
+	{
+		end_game(data);
+		//return (0);
+	}
+		//exit (0); // need to go to a free function
 
 	if (keycode == 'w' || keycode == 119 || keycode == XK_Up)
 		new_y = data->player->player_y - data->player->move_speed;
@@ -221,7 +230,7 @@ int main(int argc, char **argv)
 
 	if (!guardian(&data, &param, argc, argv))
 		return (1);
-
+	data.param = &param;
 	// printf ("HALLLOOO???\n\n\n\n\n");
 
 	data.img.img_ptr = NULL;
@@ -265,8 +274,8 @@ int main(int argc, char **argv)
 	
 	// c'est la fing
 	
-	free_map(data.map);
-	free_param(&param);
+	// free_map(data.map);
+	// free_param(&param);
 	
 	return (0);
 	

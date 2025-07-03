@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjurdana <pjurdana@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lguiet <lguiet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 11:02:19 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/07/03 09:07:09 by pjurdana         ###   ########.fr       */
+/*   Updated: 2025/07/03 09:52:33 by lguiet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,32 @@ int	handle_key(int keycode, t_data *data)
 {
 
 // need to protect the map limit for the player
-
+	// int	new_x;
+	// int	new_y;
 	
 	if (keycode == 65307)
 		exit (0); // need to go to a free function
 
 	if (keycode == 'w' || keycode == 119)
 		data->player->player_y -= data->player->move_speed;
+		//new_y = data->player->player_y - data->player->move_speed;
 
 	if (keycode == 's' || keycode == 115)
 		data->player->player_y += data->player->move_speed;
+		//new_y = data->player->player_y + data->player->move_speed;	
 	
 	if (keycode == 'a' || keycode == 97)
 		data->player->player_x -= data->player->move_speed;
+		//new_x = data->player->player_x - data->player->move_speed;
 		
 	if (keycode == 'd' || keycode == 100)
 		data->player->player_x += data->player->move_speed;
-
+		//new_x = data->player->player_x + data->player->move_speed;
+	// if (data->map[new_y][new_x] != '\0' && data->map[new_y][new_x] != '1')
+	// {
+	// 	data->player->player_y = new_y;
+	// 	data->player->player_x = new_x;
+	// }
 	// mlx_clear_window(data->win->mlx_ptr, data->win->mlx_win);
 	render_map(data);
 	// mlx_put_image_to_window(data->win->mlx_ptr, data->win->mlx_win, data->player->player_img, data->player->player_x, data->player->player_y);
@@ -209,7 +218,7 @@ void	render_map(t_data *data)
 
 
 #include <stdio.h>
-
+# include <X11/X.h>
 int main(int argc, char **argv)
 {
 	t_mlx_win win;
@@ -257,9 +266,9 @@ int main(int argc, char **argv)
 	// mlx_put_image_to_window(data.win->mlx_ptr, data.win->mlx_win, data.player->player_img, data.player->player_x, data.player->player_y);
 	// mlx_destroy_image(data.mlx_ptr, data.player_img);
 	
-	mlx_key_hook(data.win->mlx_win, handle_key, &data);
-	// mlx_loop_hook(data.mlx_ptr, handle_key, &data);
-	
+	//mlx_key_hook(data.win->mlx_win, handle_key, &data);
+	//mlx_loop_hook(data.win->mlx_ptr, handle_key, &data);
+	mlx_hook(data.win->mlx_win, KeyPress, KeyPressMask, &handle_key, &data);
 	mlx_loop(data.win->mlx_ptr);
 	
 	

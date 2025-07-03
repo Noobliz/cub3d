@@ -6,7 +6,7 @@
 /*   By: pjurdana <pjurdana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 11:02:19 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/07/02 16:38:59 by pjurdana         ###   ########.fr       */
+/*   Updated: 2025/07/03 09:07:09 by pjurdana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,29 +91,67 @@ void	home_made_pixel_put(t_img *img, int x, int y, int color)
 
 void draw_img(t_data *data, int color, int x, int y)
 {
-
+	int px = 0;
+	int py = 0;
 	// int color = 0x00FF0000;
 
-	while (y < 24)
+	while (py < 24)
 	{
-		while (x < 24)
+		while (px < 24)
 		{
-			home_made_pixel_put(&data->img, x, y, color);
-			x++;
+			home_made_pixel_put(&data->img, x * 24 + px, y * 24 + py, color);
+			px++;
 		}
-		x = 0;
-		home_made_pixel_put(&data->img, x, y, color);
+		px = 0;
+		// home_made_pixel_put(&data->img, x, y, color);
 
-		y++;
+		py++;
 	}
-	
+}
+
+void draw_img_player(t_data *data, int x, int y, char dir)
+{
+	int px, py;
+	int tx = x * 24;
+	int ty = y * 24;
+
+	for (py = 0; py < 24; py++)
+	{
+		for (px = 0; px < 24; px++)
+		{
+			// Coordonnées relatives dans le TILE
+			int rx = px;
+			int ry = py;
+
+			int draw = 0;
+
+			// Triangle pointe vers le haut (Nord)
+			if (dir == 'N' && ry < 24 / 2 && abs(rx - 24 / 2) < ry)
+				draw = 1;
+
+			// Sud
+			else if (dir == 'S' && ry > 24 / 2 && abs(rx - 24 / 2) < 24 - ry)
+				draw = 1;
+
+			// Est
+			else if (dir == 'E' && rx > 24 / 2 && abs(ry - 24 / 2) < 24 - rx)
+				draw = 1;
+
+			// Ouest
+			else if (dir == 'W' && rx < 24 / 2 && abs(ry - 24 / 2) < rx)
+				draw = 1;
+
+			if (draw)
+				home_made_pixel_put(&data->img, tx + px, ty + py, 0x00FF0000); // RED
+		}
+	}
 }
 
 t_img	create_img(t_data data)
 {
 	t_img	img;
 	
-	img.img_ptr = mlx_new_image(data.win->mlx_ptr, 24, 24);
+	img.img_ptr = mlx_new_image(data.win->mlx_ptr, SCREEN_HEIGHT * 24, SCREEN_WIDTH * 24); // ACHTUNG 
 	
 	// printf ("HALLLOOO???\n\n\n\n\n");
 	img.img_addr = mlx_get_data_addr(img.img_ptr, &img.bpp, &img.line_size, &img.endian);
@@ -146,7 +184,9 @@ void	render_map(t_data *data)
 				color = BLACK;
 			else
 				color = GREEN;
-			draw_img(data, color, x * 24, y * 24);
+			if (data->map[y][x] == 'N' || data->map[y][x] == 'S' || data->map[y][x] == 'E' || data->map[y][x] == 'W')
+				data->player->p_dir = data->map[y][x];
+			draw_img(data, color, x, y); // x * 24, y * 24);
 			x++;
 			// printf ("UIIIIIII???\n\n\n\n\n");
 
@@ -157,9 +197,10 @@ void	render_map(t_data *data)
 
 	}
 	
-	draw_img(data, 0x00FF0000, data->player->player_x * 24, data->player->player_y * 24);
-	mlx_put_image_to_window(data->win->mlx_ptr, data->win->mlx_win, data->img.img_ptr, SCREEN_HEIGHT / 2, SCREEN_WIDTH / 2);
+	draw_img_player(data, data->player->player_x, data->player->player_y, data->player->p_dir);
+	mlx_put_image_to_window(data->win->mlx_ptr, data->win->mlx_win, data->img.img_ptr, 0, 0);
 	// printf ("HALLLOOO???\n\n\n\n\n");
+	// sleep (2);
 }
 
 
@@ -189,7 +230,7 @@ int main(int argc, char **argv)
 
 
 	data.win->mlx_ptr = mlx_init();
-	data.player->move_speed = 20;
+	data.player->move_speed = 1;
 	
 	if (data.win->mlx_ptr == NULL)
 		return (1);
@@ -232,8 +273,7 @@ int main(int argc, char **argv)
 	// printf ("HALLOO???\n\n\n");
 }
 
-
-
+// clear && make && ./guardian map.cub
 
 
 

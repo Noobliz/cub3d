@@ -6,7 +6,7 @@
 /*   By: lguiet <lguiet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 11:02:19 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/07/03 11:15:26 by lguiet           ###   ########.fr       */
+/*   Updated: 2025/07/03 11:19:42 by lguiet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 void	end_game(t_data *data)
 {
+	// loop end, destroy window, destroy display, free mlx,  free like mlx_ptr etc
 	free_map(data->map);
 	free_param(data->param);
 	exit (0);

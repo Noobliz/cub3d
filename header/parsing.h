@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lguiet <lguiet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pjurdana <pjurdana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 11:26:23 by lguiet            #+#    #+#             */
-/*   Updated: 2025/07/03 11:13:08 by lguiet           ###   ########.fr       */
+/*   Updated: 2025/07/04 15:45:00 by pjurdana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 #include "../libft/libft.h"
 #include "cub3d.h"
-//#include "../../header/cub3d.h"
 #include <fcntl.h>
 #include <stdlib.h>
 #include <stdio.h>

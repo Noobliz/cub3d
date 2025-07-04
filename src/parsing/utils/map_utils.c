@@ -15,7 +15,7 @@
 
 int is_player(char c)
 {
-    return (((c) == 'N' || (c) == 'S' || (c) == 'E' || (c) == 'W'));
+	return (((c) == 'N' || (c) == 'S' || (c) == 'E' || (c) == 'W'));
 }
 
 int valid_char(char *line)

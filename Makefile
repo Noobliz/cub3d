@@ -7,8 +7,7 @@ OBJDIR = obj
 LIBFTDIR = libft
 
 # Sources
-SRC := src/main_test.c \
-		src/graphic/main.c \
+SRC := src/graphic/main3d.c \
 		src/$(PARS)/get_infile/infile_to_tab.c \
 		src/$(PARS)/map_to_rectangle.c \
 		src/$(PARS)/utils/free_stuff.c \
@@ -19,6 +18,7 @@ SRC := src/main_test.c \
 		src/$(PARS)/check_params/check_colors.c \
 		src/$(PARS)/check_params/check_textures.c \
 		src/$(PARS)/get_params/params_utils.c \
+		src/main_test.c \
 
 # Objets : transforme chaque .c en obj/chemin/vers/fichier.o
 OBJ := $(SRC:%.c=$(OBJDIR)/%.o)

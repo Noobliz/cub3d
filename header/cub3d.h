@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pjurdana <pjurdana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 14:15:56 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/07/03 16:29:37 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/07/04 15:51:52 by pjurdana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,39 @@
 # include <X11/X.h>
 # include <math.h>
 # include <X11/keysym.h>
+#include <time.h>
+
 
 #define WHITE 0xFFFFFF
 #define BLACK 0x000000
 #define GREEN 0x00FF00
 
 
+
 //####### structures ######//
-struct s_param;
 
 typedef struct s_player
 {
 	void	*player_img;
 
-	float	player_x;
-	float	player_y;
-
-	float	move_speed;
-
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	move_speed;
+	double	rot_speed;
+	double	plane_x;
+	double	plane_y;
 	char	p_dir;
+	
 }	t_player;
+
+typedef struct s_bigben
+{
+	double	time;
+	double	old_time;
+	double frame_time;
+}	t_bigben;
 
 typedef struct	t_img
 {
@@ -74,23 +87,25 @@ typedef struct s_mlx_win
 
 typedef struct s_data
 {
-	char	**map;
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
+	char		**map;
+	char		*NO;
+	char		*SO;
+	char		*WE;
+	char		*EA;
 
-	int		F[3];
-	int		C[3];
-	struct s_param	*param;
+	int			F[3];
+	int			C[3];
+	struct s_param		*param;
+	t_bigben	*bigben;
 	t_mlx_win	*win;
 	t_player	*player;
 	t_img		img;
 
 }	t_data;
 
+
+//############ GRAPHIC_DIR ############//
+int		main(int argc, char **argv);
 void	render_map(t_data *data);
-
-
 
 #endif

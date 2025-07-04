@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lguiet <lguiet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pjurdana <pjurdana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 11:02:19 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/07/03 11:19:42 by lguiet           ###   ########.fr       */
+/*   Updated: 2025/07/04 15:46:38 by pjurdana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	handle_key(int keycode, t_data *data)
 {
 
 // need to protect the map limit for the player
-	int	new_x = data->player->player_x;
-	int	new_y = data->player->player_y;
+	int	new_x = data->player->pos_x;
+	int	new_y = data->player->pos_y;
 	
 	if (keycode == 65307)
 	{
@@ -46,28 +46,28 @@ int	handle_key(int keycode, t_data *data)
 		//exit (0); // need to go to a free function
 
 	if (keycode == 'w' || keycode == 119 || keycode == XK_Up)
-		new_y = data->player->player_y - data->player->move_speed;
-		// data->player->player_y -= data->player->move_speed;
+		new_y = data->player->pos_y - data->player->move_speed;
+		// data->player->pos_y -= data->player->move_speed;
 
 	if (keycode == 's' || keycode == 115 || keycode == XK_Down)
-		new_y = data->player->player_y + data->player->move_speed;	
-		// data->player->player_y += data->player->move_speed;
+		new_y = data->player->pos_y + data->player->move_speed;	
+		// data->player->pos_y += data->player->move_speed;
 	
 	if (keycode == 'a' || keycode == 97 || keycode == XK_Left)
-		new_x = data->player->player_x - data->player->move_speed;
-		// data->player->player_x -= data->player->move_speed;
+		new_x = data->player->pos_x - data->player->move_speed;
+		// data->player->pos_x -= data->player->move_speed;
 		
 	if (keycode == 'd' || keycode == 100 || keycode == XK_Right)
-		new_x = data->player->player_x + data->player->move_speed;
-		// data->player->player_x += data->player->move_speed;
+		new_x = data->player->pos_x + data->player->move_speed;
+		// data->player->pos_x += data->player->move_speed;
 	if (data->map[new_y][new_x] != '1')
 	{
-		data->player->player_y = new_y;
-		data->player->player_x = new_x;
+		data->player->pos_y = new_y;
+		data->player->pos_x = new_x;
 	}
 	// mlx_clear_window(data->win->mlx_ptr, data->win->mlx_win);
 	render_map(data);
-	// mlx_put_image_to_window(data->win->mlx_ptr, data->win->mlx_win, data->player->player_img, data->player->player_x, data->player->player_y);
+	// mlx_put_image_to_window(data->win->mlx_ptr, data->win->mlx_win, data->player->player_img, data->player->pos_x, data->player->pos_y);
 
 	return (0);
 
@@ -90,8 +90,8 @@ void	find_player_start(t_data *data)
 		{
 			if (is_player(data->map[y][x]))
 			{
-				data->player->player_x = x;
-				data->player->player_y = y;
+				data->player->pos_x = x;
+				data->player->pos_y = y;
 			}
 			x++;
 		}
@@ -207,7 +207,7 @@ void	render_map(t_data *data)
 
 	}
 	
-	draw_img_player(data, data->player->player_x, data->player->player_y, data->player->p_dir);
+	draw_img_player(data, data->player->pos_x, data->player->pos_y, data->player->p_dir);
 	mlx_put_image_to_window(data->win->mlx_ptr, data->win->mlx_win, data->img.img_ptr, 0, 0);
 	// printf ("HALLLOOO???\n\n\n\n\n");
 	// sleep (2);
@@ -220,68 +220,68 @@ void	render_map(t_data *data)
 
 #include <stdio.h>
 
-int main(int argc, char **argv)
-{
-	t_mlx_win win;
-	t_player player;
-	t_data data;
-	t_param param;
+// int main(int argc, char **argv)
+// {
+// 	t_mlx_win win;
+// 	t_player player;
+// 	t_data data;
+// 	t_param param;
 
-	data.map = NULL;
+// 	data.map = NULL;
 
-	if (!guardian(&data, &param, argc, argv))
-		return (1);
-	data.param = &param;
-	// printf ("HALLLOOO???\n\n\n\n\n");
+// 	if (!guardian(&data, &param, argc, argv))
+// 		return (1);
+// 	data.param = &param;
+// 	// printf ("HALLLOOO???\n\n\n\n\n");
 
-	data.img.img_ptr = NULL;
-	data.player = &player;
-	data.win = &win;
+// 	data.img.img_ptr = NULL;
+// 	data.player = &player;
+// 	data.win = &win;
 
 
-	data.win->mlx_ptr = mlx_init();
-	data.player->move_speed = 1;
+// 	data.win->mlx_ptr = mlx_init();
+// 	data.player->move_speed = 1;
 	
-	if (data.win->mlx_ptr == NULL)
-		return (1);
+// 	if (data.win->mlx_ptr == NULL)
+// 		return (1);
 		
-	data.win->mlx_win = mlx_new_window(data.win->mlx_ptr, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub2D");
-	if (data.win->mlx_win == NULL)
-		return (1);
+// 	data.win->mlx_win = mlx_new_window(data.win->mlx_ptr, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub2D");
+// 	if (data.win->mlx_win == NULL)
+// 		return (1);
 
-	// data.player->player_img = mlx_xpm_file_to_image(data.win->mlx_ptr, "H_I_F.xpm", &data.win->img_width, &data.win->img_height);
-	// if(!data.player->player_img)
-	// {
-	// 	return (printf("Broken IMG"));
-	// }
-	find_player_start(&data);
-	// printf ("\n\n\n player_x : %f\n\n\nplayer_y : %f", data.player->player_x, data.player->player_y);
+// 	// data.player->player_img = mlx_xpm_file_to_image(data.win->mlx_ptr, "H_I_F.xpm", &data.win->img_width, &data.win->img_height);
+// 	// if(!data.player->player_img)
+// 	// {
+// 	// 	return (printf("Broken IMG"));
+// 	// }
+// 	find_player_start(&data);
+// 	// printf ("\n\n\n pos_x : %f\n\n\npos_y : %f", data.player->pos_x, data.player->pos_y);
 	
-	// data.player->player_x = screen_width / 2;
-	// data.player->player_y = screen_height / 2;
+// 	// data.player->pos_x = screen_width / 2;
+// 	// data.player->pos_y = screen_height / 2;
 	
-	render_map(&data);
-	
-	
-	// draw_player(&data);
-	// mlx_put_image_to_window(data.win->mlx_ptr, data.win->mlx_win, data.player->player_img, data.player->player_x, data.player->player_y);
-	// mlx_destroy_image(data.mlx_ptr, data.player_img);
-	
-	//mlx_key_hook(data.win->mlx_win, handle_key, &data);
-	//mlx_loop_hook(data.win->mlx_ptr, handle_key, &data);
-	mlx_hook(data.win->mlx_win, KeyPress, KeyPressMask, &handle_key, &data);
-	mlx_loop(data.win->mlx_ptr);
+// 	render_map(&data);
 	
 	
-	// c'est la fing
+// 	// draw_player(&data);
+// 	// mlx_put_image_to_window(data.win->mlx_ptr, data.win->mlx_win, data.player->player_img, data.player->pos_x, data.player->pos_y);
+// 	// mlx_destroy_image(data.mlx_ptr, data.player_img);
 	
-	// free_map(data.map);
-	// free_param(&param);
+// 	//mlx_key_hook(data.win->mlx_win, handle_key, &data);
+// 	//mlx_loop_hook(data.win->mlx_ptr, handle_key, &data);
+// 	mlx_hook(data.win->mlx_win, KeyPress, KeyPressMask, &handle_key, &data);
+// 	mlx_loop(data.win->mlx_ptr);
 	
-	return (0);
 	
-	// printf ("HALLOO???\n\n\n");
-}
+// 	// c'est la fing
+	
+// 	// free_map(data.map);
+// 	// free_param(&param);
+	
+// 	return (0);
+	
+// 	// printf ("HALLOO???\n\n\n");
+// }
 
 // clear && make && ./guardian map.cub
 
@@ -300,11 +300,11 @@ int main(int argc, char **argv)
 // 	{
 // 		while (x < PLAYER_SIZE)
 // 		{
-// 			mlx_pixel_put(window->mlx_ptr, window->mlx_win, window->player_x + x, window->player_y + y, color);
+// 			mlx_pixel_put(window->mlx_ptr, window->mlx_win, window->pos_x + x, window->pos_y + y, color);
 // 			x++;
 // 		}
 // 		x = 0;
-// 		mlx_pixel_put(window->mlx_ptr, window->mlx_win, window->player_x + x, window->player_y + y, color);
+// 		mlx_pixel_put(window->mlx_ptr, window->mlx_win, window->pos_x + x, window->pos_y + y, color);
 
 // 		y++;
 // 	}
@@ -321,19 +321,19 @@ int main(int argc, char **argv)
 // 		exit (0); // need to go to a free function
 
 // 	if (keycode == 'w' || keycode == 119)
-// 		window->player_y -= MOVE_SPEED;
+// 		window->pos_y -= MOVE_SPEED;
 
 // 	if (keycode == 's' || keycode == 115)
-// 		window->player_y += MOVE_SPEED;
+// 		window->pos_y += MOVE_SPEED;
 	
 // 	if (keycode == 'a' || keycode == 97)
-// 		window->player_x -= MOVE_SPEED;
+// 		window->pos_x -= MOVE_SPEED;
 		
 // 	if (keycode == 'd' || keycode == 100)
-// 		window->player_x += MOVE_SPEED;
+// 		window->pos_x += MOVE_SPEED;
 
 // 	mlx_clear_window(window->mlx_ptr, window->mlx_win);
-// 	mlx_put_image_to_window(window->mlx_ptr, window->mlx_win, window->player_img, window->player_x, window->player_y);
+// 	mlx_put_image_to_window(window->mlx_ptr, window->mlx_win, window->player_img, window->pos_x, window->pos_y);
 
 	
 // 	// draw_player(window);?
@@ -365,11 +365,11 @@ int main(int argc, char **argv)
 // 	}
 
 
-// 	window.player_x = screen_width / 2;
-// 	window.player_y = screen_height / 2;
+// 	window.pos_x = screen_width / 2;
+// 	window.pos_y = screen_height / 2;
 
 // 	// draw_player(&window);
-// 	mlx_put_image_to_window(window.mlx_ptr, window.mlx_win, window.player_img, window.player_x, window.player_y);
+// 	mlx_put_image_to_window(window.mlx_ptr, window.mlx_win, window.player_img, window.pos_x, window.pos_y);
 
 	
 // 	mlx_key_hook(window.mlx_win, handle_key, &window);

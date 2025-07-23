@@ -18,6 +18,7 @@ SRC := src/graphic/main3d.c \
 		src/$(PARS)/check_params/check_colors.c \
 		src/$(PARS)/check_params/check_textures.c \
 		src/$(PARS)/get_params/params_utils.c \
+		src/input/input.c\
 		src/main_test.c \
 
 # Objets : transforme chaque .c en obj/chemin/vers/fichier.o
@@ -27,7 +28,7 @@ TOTAL := $(words $(SRC))
 COUNT = 0
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I$(LIBFTDIR)
+CFLAGS = -g -Wall -Wextra -Werror -I$(LIBFTDIR)
 
 LIBFT = $(LIBFTDIR)/libft.a
 MLX_FLAGS = -Lmlx -lmlx -Lminilibx-linux -lXext -lX11	#|

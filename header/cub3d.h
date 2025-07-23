@@ -6,7 +6,7 @@
 /*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 14:15:56 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/07/23 13:40:18 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:34:47 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #define WHITE 0xFFFFFF
 #define BLACK 0x000000
 #define GREEN 0x00FF00
+
 
 //Binding touch//
 // enum e_keycode
@@ -142,6 +143,12 @@ typedef struct s_data
 	t_img		img;
 
 }	t_data;
+
+#define DIR_X data->player->dir_x
+#define DIR_Y data->player->dir_y
+#define POS_X data->player->pos_x
+#define POS_Y data->player->pos_y
+#define MOVE_SPEED data->player->move_speed
 
 
 //############ GRAPHIC_DIR ############//

@@ -6,7 +6,7 @@
 /*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 16:29:43 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/07/23 13:46:03 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/07/23 15:27:33 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,14 +183,14 @@ void	raycasting_loop(t_data *data)
 		}
 		line_height = (int)(SCREEN_HEIGHT / perp_wall_dist);
 		// printf("perpwalldist: %2.f, line_height : %d\n\n", perp_wall_dist, line_height);
-		draw_start = -line_height / 2 + SCREEN_HEIGHT / 2;
+		draw_start = -line_height * 0.5 + SCREEN_HEIGHT * 0.5;
 		// printf ("DRAW_START : %d\n\n\n\n", draw_start);
 		// exit (0);
 		if (draw_start < 0)
 			draw_start = 0;
 		// draw_start = 0;
 
-		draw_end = line_height / 2 + SCREEN_HEIGHT / 2;
+		draw_end = line_height * 0.5 + SCREEN_HEIGHT * 0.5;
 		if (draw_end >= SCREEN_HEIGHT)
 			draw_end = SCREEN_HEIGHT - 1;
 		// printf("draw_start : %d, draw_end : %d\n\n", draw_start, draw_end);
@@ -204,7 +204,7 @@ void	raycasting_loop(t_data *data)
 			// if (x == 50)
 				// break;
 		}
-		printf("x : %d\n\n", x);
+		// printf("x : %d\n\n", x);
 
 		// if (x == 50)
 		// 		break;

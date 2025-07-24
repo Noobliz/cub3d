@@ -6,7 +6,7 @@
 /*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 14:15:56 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/07/23 16:34:47 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/07/24 09:10:58 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ typedef struct s_data
 #define POS_X data->player->pos_x
 #define POS_Y data->player->pos_y
 #define MOVE_SPEED data->player->move_speed
+#define ROT_SPEED data->player->rot_speed
 
 
 //############ GRAPHIC_DIR ############//

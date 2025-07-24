@@ -13,7 +13,8 @@
 int	handle_key(int keycode, t_data *data)
 {
 	printf("Test Handle_key :begin\n\n\n");
-	// double	old_dir;
+	double	old_dir;
+	double	old_plane_x;
 // need to protect the map limit for the player
 	// double	new_x = data->player->pos_x;
 	// double	new_y = data->player->pos_y;
@@ -48,10 +49,14 @@ int	handle_key(int keycode, t_data *data)
 		if (data->map[(int)POS_X][(int)(POS_Y - DIR_Y * MOVE_SPEED)] == '0')
 				POS_Y -= DIR_Y * MOVE_SPEED;
 	}
-	if (keycode == XK_Right || keycode == 100)
+	if (keycode == XK_Left || keycode == 97)
 	{
-		// old_dir = DIR_X;
-		// DIR_X = data->player->
+		old_dir = DIR_X;
+		DIR_X = DIR_X * cos(-ROT_SPEED) - DIR_Y * sin(-ROT_SPEED);
+		DIR_Y = old_dir * sin(-ROT_SPEED) + DIR_Y * cos(-ROT_SPEED);
+		old_plane_x = data->player->plane_x;
+		data->player->plane_x = data->player->plane_x * cos(-ROT_SPEED) - data->player->plane_y * sin(-ROT_SPEED);
+		data->player->plane_y = old_plane_x * sin(-ROT_SPEED) + data->player->plane_y * cos(-ROT_SPEED);
 	}
 	if (keycode == 'a' /*|| keycode == 97 || keycode == XK_Left*/)
 	{

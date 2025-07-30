@@ -6,7 +6,7 @@
 /*   By: qumiraud <qumiraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 14:15:56 by qumiraud          #+#    #+#             */
-/*   Updated: 2025/07/24 09:10:58 by qumiraud         ###   ########.fr       */
+/*   Updated: 2025/07/30 11:50:21 by qumiraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,14 @@ typedef struct s_data
 	int			F[3];
 	int			C[3];
 	struct s_param		*param;
+	int				*texture_img[4];
+	int					*texture[4];
+	void	*img_ptr;
+	char	*img_data;
+	int		bpp;
+	int		size_line;
+	int		endian;
+
 	t_bigben	*bigben;
 	t_mlx_win	*win;
 	t_player	*player;
@@ -148,8 +156,11 @@ typedef struct s_data
 #define DIR_Y data->player->dir_y
 #define POS_X data->player->pos_x
 #define POS_Y data->player->pos_y
+#define PLANE_X data->player->plane_x
+#define PLANE_Y data->player->plane_y
 #define MOVE_SPEED data->player->move_speed
 #define ROT_SPEED data->player->rot_speed
+#define MAP data->map
 
 
 //############ GRAPHIC_DIR ############//
